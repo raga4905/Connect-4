@@ -1,10 +1,10 @@
 /*----- constants -----*/
 const MAX_GUESSES = 42;
 
-const PLAYERS = {
-    '-1': 'blue',
-    '1': 'red',
-    'null': 'white'
+const PLAYER_COLORS = {
+    '-1': 'purple',
+    '1': 'grey',
+    'null': 'transparent'
 };
 
 // const WIN_COM = 
@@ -20,16 +20,11 @@ let gameBoardEl = document.querySelector('table')
 let gameBoardCell = document.querySelectorAll('td div')
 
 // /*----- event listeners -----*/
-document.querySelector('#c1').addEventListener('click', handleDropCoin);
-document.querySelector('#c2').addEventListener('click', handleDropCoin);
-document.querySelector('#c3').addEventListener('click', handleDropCoin);
-document.querySelector('#c4').addEventListener('click', handleDropCoin);
-document.querySelector('#c5').addEventListener('click', handleDropCoin);
-document.querySelector('#c6').addEventListener('click', handleDropCoin);
-document.querySelector('#c7').addEventListener('click', handleDropCoin);
-// I want the column to be evt.target.id (c0,c1,c2, etc.)
+document.getElementById('drop-buttons').addEventListener('click', handleDropClick);
 
 /*----- functions -----*/
+
+init();
 
 function init() {
     board = [
@@ -67,20 +62,37 @@ function handleDropCoin() {
     // }
 }
 
-function handleClick(evt) {
+function handleDropClick(evt) {
     // have this loop through the drop coin function. 
     // if button a is clicked loop through array a 
     // parameter it takes is the button that was click 
     // buttons need to click. need to have a column idx 
     // to determine the column clicked
     // this one needs to assign 
-    const idx = parseInt(evt.target.id.replace('sq', ''));
-    console.log(idx)
+    const colIdx = parseInt(evt.target.id.replace('c', ''));
+    if (isNaN(colIdx) || winner) return;
+    // update all impacted state 
+    let rowIdx = board[colIdx].indexOf(null);
+    if (rowIdx === -1) return;
+    board[colIdx][rowIdx] = turn;
+    turn *= -1;
+    
+    
+    // invoke render 
+    render();
 }
 
 
 function checkWinner() {
-
+    // starting at the left-most column, you never
+    // checkCallWin function, you know which col your checking and idx of column
+    // think in terms of offset, extracting four values 
+    // rowIdx cellIdx, + colIdx + 1 to move over cell to right (as long as you leave row idx the saem)
+    // board[colIdx] +1
+    // check diagonally up: 
+    // (this is sep function (check updiag)) add four values together 
+    // Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx + 1] + board[colIdx + 2][rowIdx + 2] + board[colIdx + 3][rowIdx +3]) === 4 
+    // board[colIdx][rowIdx]
 }
 
 function render() {
@@ -89,7 +101,18 @@ function render() {
     // the current column.  Then, you can use the indexes of the two forEach's to select the 
     // proper DOM element to style  by using getElementById if you put id's on the elements 
     // like "c3r2" which would be the element for column 3 row 2.
-
+    // render board
+    board.forEach(function(colArr, colIdx) {
+        colArr.forEach(function(cell, rowIdx) {
+            // cell on line 96 holds value of the state
+            // cell holds the null/1/-1 value 
+            const cellEl = document.getElementById(`c${colIdx}r${rowIdx}`);
+            cellEl.style.backgroundColor = PLAYER_COLORS[cell];
+        });
+        // how to go through iteration to see if corrseponding color array is full, set diplay to 
+        // hide the div/button if column is full (ternary to hide or show) style.visibility ('hidden' or 'visible')
+        document.getElementById(`c${colIdx}`).style.visibility = colArr.includes(null) ? 'visible' : 'hidden';
+    });
 }
 
 
