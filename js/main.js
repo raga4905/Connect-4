@@ -16,11 +16,12 @@ let winner;
 
 
 /*----- cached element references -----*/
-let gameBoardEl = document.querySelector('#msg')
-let gameBoardCell = document.querySelectorAll('td div')
+let message = document.querySelector('#msg')
+// let gameBoardCell = document.querySelectorAll('td div')
 
 // /*----- event listeners -----*/
 document.getElementById('drop-buttons').addEventListener('click', handleDropClick);
+document.querySelector('#reset').addEventListener('click', init)
 
 /*----- functions -----*/
 
@@ -75,12 +76,20 @@ function handleDropClick(evt) {
     if (rowIdx === -1) return;
     board[colIdx][rowIdx] = turn;
     
-    if horizWin(){
-        return { alert('Winner!') }
+    // console.log(horizWin())
+    if (horizWin() + vertWin() + diagUp()) {
+        message.textContent = `Player ${turn < 0 ? 'Two' : 'One'} Wins!`;
     }
+
     turn *= -1;
     // invoke render 
     render();
+
+    // if (horizWin()) {
+    //     return (console.log('Winner!'))
+    // }
+    // + diagDown() 
+    
 }
 
 // if (horizWin() || vertWin() || diagUp() || diagDown()) {
@@ -111,10 +120,12 @@ function handleDropClick(evt) {
 function horizWin() {
     for(let colIdx = 0; colIdx < 4; colIdx++) {
         for (let rowIdx = 0; rowIdx < 6; rowIdx++) {
-            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx] + board[colIdx + 2][rowIdx] + board[colIdx + 3][rowIdx]) === 4);
-            return true;
+            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx] + board[colIdx + 2][rowIdx] + board[colIdx + 3][rowIdx]) === 4) {
+                return true
+            }
         }
     }  
+    return false
     // if board[1][0] + board[2][0] + board[3][0] + board[4][0] === 4
     // if board[0][0] + board[1][0] + board[2][0] + board[3][0] === 4
 }
@@ -122,29 +133,35 @@ function horizWin() {
 function vertWin() {
     for(let rowIdx = 0; rowIdx < 4; rowIdx++) {
         for(let colIdx = 0; colIdx < 7; colIdx++) {
-            if (Math.abs(board[colIdx][rowIdx] + board[colIdx][rowIdx + 1] + board[colIdx][rowIdx + 2] + board[colIdx][rowIdx + 3]) === 4);
-            return true;
+            if (Math.abs(board[colIdx][rowIdx] + board[colIdx][rowIdx + 1] + board[colIdx][rowIdx + 2] + board[colIdx][rowIdx + 3]) === 4) {
+                return true;
+            }
         }
     }
+    return false
 }
 
 function diagUp() {
     for(let colIdx = 0; colIdx < 4; colIdx++) {
         for(let rowIdx = 0; rowIdx < 3; rowIdx++) {
-            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx + 1] + board[colIdx + 2][rowIdx + 2] + board[colIdx + 3][rowIdx + 3]) === 4);
-            return true;
+            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx + 1] + board[colIdx + 2][rowIdx + 2] + board[colIdx + 3][rowIdx + 3]) === 4) {
+                return true;
+            }
         }
     }
+    return false
 }
 
-function diagDown() {
-    for(let colIdx = 0; colIdx < 5; colIdx++) {
-        for(let rowIdx = 5; rowIdx > 2; rowIdx--) {
-            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx - 1] + board[colIdx + 2][rowIdx - 2] + board[colIdx + 3][rowIdx - 3]) === 4);
-            return true;
-        }
-    }
-}
+// function diagDown() {
+//     for(let colIdx = 0; colIdx < 5; colIdx++) {
+//         for(let rowIdx = 5; rowIdx > 2; rowIdx--) {
+//             if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx - 1] + board[colIdx + 2][rowIdx - 2] + board[colIdx + 3][rowIdx - 3]) === 4){
+//                 return true;
+//             }
+//         }
+//     }
+//     return false
+// }
 
 // if board[0][5] + board[1][4] + board[2]
 
@@ -167,7 +184,6 @@ function render() {
         // hide the div/button if column is full (ternary to hide or show) style.visibility ('hidden' or 'visible')
         document.getElementById(`c${colIdx}`).style.visibility = colArr.includes(null) ? 'visible' : 'hidden';
     });
-    
 }
 
 // board = [
