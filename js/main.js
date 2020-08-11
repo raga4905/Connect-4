@@ -16,7 +16,7 @@ let winner;
 
 
 /*----- cached element references -----*/
-let gameBoardEl = document.querySelector('table')
+let gameBoardEl = document.querySelector('#msg')
 let gameBoardCell = document.querySelectorAll('td div')
 
 // /*----- event listeners -----*/
@@ -38,13 +38,12 @@ function init() {
     ];
     turn = 1;
     winner = null; 
-    console.log(board)
     render();
 }
 
 // loop down that array of array, click on button to select array 
 
-function handleDropCoin() {
+
     // Determine the rowIdx by finding the first null in the column array.
     // when you click drop, each button should be associated to an array 
     // it should loop through the array and get to the first time it hits null
@@ -60,7 +59,7 @@ function handleDropCoin() {
     // for (let i = 0; i < board.length -1; i--) {
         // console.log(board[0][1]);
     // }
-}
+
 
 function handleDropClick(evt) {
     // have this loop through the drop coin function. 
@@ -75,15 +74,19 @@ function handleDropClick(evt) {
     let rowIdx = board[colIdx].indexOf(null);
     if (rowIdx === -1) return;
     board[colIdx][rowIdx] = turn;
+    
+    if horizWin(){
+        return { alert('Winner!') }
+    }
     turn *= -1;
-    
-    
     // invoke render 
     render();
 }
 
+// if (horizWin() || vertWin() || diagUp() || diagDown()) {
+//         return gameBoardEl.textContent = `Player ${turn} Wins!`;
+//     }
 
-function checkWinner() {
     // starting at the left-most column, you never
     // checkCallWin function, you know which col your checking and idx of column
     // think in terms of offset, extracting four values 
@@ -93,7 +96,59 @@ function checkWinner() {
     // (this is sep function (check updiag)) add four values together 
     // Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx + 1] + board[colIdx + 2][rowIdx + 2] + board[colIdx + 3][rowIdx +3]) === 4 
     // board[colIdx][rowIdx]
+    // call the three functions within the function 
+    // if (horizWin()) {
+    //     return `Player ${cell} Wins!`
+    // } else if (vertWin()) {
+    //     return `Player ${cell} Wins!`
+    // } else if (diagUp()) {
+    //     return `Player ${cell} Wins!`
+    // }
+
+    // if (board.includes(null)) return null;
+    // return 'T';
+
+function horizWin() {
+    for(let colIdx = 0; colIdx < 4; colIdx++) {
+        for (let rowIdx = 0; rowIdx < 6; rowIdx++) {
+            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx] + board[colIdx + 2][rowIdx] + board[colIdx + 3][rowIdx]) === 4);
+            return true;
+        }
+    }  
+    // if board[1][0] + board[2][0] + board[3][0] + board[4][0] === 4
+    // if board[0][0] + board[1][0] + board[2][0] + board[3][0] === 4
 }
+
+function vertWin() {
+    for(let rowIdx = 0; rowIdx < 4; rowIdx++) {
+        for(let colIdx = 0; colIdx < 7; colIdx++) {
+            if (Math.abs(board[colIdx][rowIdx] + board[colIdx][rowIdx + 1] + board[colIdx][rowIdx + 2] + board[colIdx][rowIdx + 3]) === 4);
+            return true;
+        }
+    }
+}
+
+function diagUp() {
+    for(let colIdx = 0; colIdx < 4; colIdx++) {
+        for(let rowIdx = 0; rowIdx < 3; rowIdx++) {
+            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx + 1] + board[colIdx + 2][rowIdx + 2] + board[colIdx + 3][rowIdx + 3]) === 4);
+            return true;
+        }
+    }
+}
+
+function diagDown() {
+    for(let colIdx = 0; colIdx < 5; colIdx++) {
+        for(let rowIdx = 5; rowIdx > 2; rowIdx--) {
+            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx - 1] + board[colIdx + 2][rowIdx - 2] + board[colIdx + 3][rowIdx - 3]) === 4);
+            return true;
+        }
+    }
+}
+
+// if board[0][5] + board[1][4] + board[2]
+
+
 
 function render() {
     // For rendering, use a nested forEach, where the outer forEach iterates 
@@ -104,8 +159,7 @@ function render() {
     // render board
     board.forEach(function(colArr, colIdx) {
         colArr.forEach(function(cell, rowIdx) {
-            // cell on line 96 holds value of the state
-            // cell holds the null/1/-1 value 
+            // cell holds the null/1/-1 value, holds value of the state
             const cellEl = document.getElementById(`c${colIdx}r${rowIdx}`);
             cellEl.style.backgroundColor = PLAYER_COLORS[cell];
         });
@@ -113,9 +167,18 @@ function render() {
         // hide the div/button if column is full (ternary to hide or show) style.visibility ('hidden' or 'visible')
         document.getElementById(`c${colIdx}`).style.visibility = colArr.includes(null) ? 'visible' : 'hidden';
     });
+    
 }
 
-
+// board = [
+//     [null, null, null, null, null, null],
+//     [null, null, null, null, null, null],
+//     [null, null, null, null, null, null],
+//     [null, null, null, null, null, null],
+//     [null, null, null, null, null, null],
+//     [null, null, null, null, null, null],
+//     [null, null, null, null, null, null]
+// ];
 
 
 
@@ -227,6 +290,3 @@ function render() {
 // }
 
 // init();
-
-
-// console.log(init)
