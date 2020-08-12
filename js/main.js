@@ -2,7 +2,7 @@
 const MAX_GUESSES = 42;
 
 const PLAYER_COLORS = {
-    '-1': 'black',
+    '-1': 'yellow',
     '1': 'white',
     'null': 'transparent'
 };
@@ -52,9 +52,7 @@ function handleDropClick(evt) {
     if (horizWin() + vertWin() + diagUp() + diagDown()) {
         message.textContent = `Player ${turn < 0 ? 'Two' : 'One'} Wins!`;
         document.getElementById('drop-buttons').removeEventListener('click', handleDropClick);
-    }
-//     if (board.includes(null)) return null;
-// // return 'T';
+    } 
 
     turn *= -1;
     render();
