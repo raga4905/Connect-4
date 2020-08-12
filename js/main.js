@@ -7,7 +7,6 @@ const PLAYER_COLORS = {
     'null': 'transparent'
 };
 
-// const audio = new Audio('https://freesound.org/s/244656/');
 
 /*----- app's state (variables) -----*/
 let board;
