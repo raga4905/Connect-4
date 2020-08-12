@@ -2,8 +2,8 @@
 const MAX_GUESSES = 42;
 
 const PLAYER_COLORS = {
-    '-1': 'purple',
-    '1': 'grey',
+    '-1': 'black',
+    '1': 'white',
     'null': 'transparent'
 };
 
@@ -88,13 +88,12 @@ function handleDropClick(evt) {
     // if (horizWin()) {
     //     return (console.log('Winner!'))
     // }
-    // + diagDown() 
+    //  
+
+    // + diagDown()
     
 }
 
-// if (horizWin() || vertWin() || diagUp() || diagDown()) {
-//         return gameBoardEl.textContent = `Player ${turn} Wins!`;
-//     }
 
     // starting at the left-most column, you never
     // checkCallWin function, you know which col your checking and idx of column
@@ -128,7 +127,7 @@ function horizWin() {
     return false
     // if board[1][0] + board[2][0] + board[3][0] + board[4][0] === 4
     // if board[0][0] + board[1][0] + board[2][0] + board[3][0] === 4
-}
+};
 
 function vertWin() {
     for(let rowIdx = 0; rowIdx < 4; rowIdx++) {
@@ -139,7 +138,7 @@ function vertWin() {
         }
     }
     return false
-}
+};
 
 function diagUp() {
     for(let colIdx = 0; colIdx < 4; colIdx++) {
@@ -150,20 +149,20 @@ function diagUp() {
         }
     }
     return false
+};
+
+function diagDown() {
+    for(let colIdx = 0; colIdx < 5; colIdx++) {
+        for(let rowIdx = 5; rowIdx > 2; rowIdx--) {
+            if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx - 1] + board[colIdx + 2][rowIdx - 2] + board[colIdx + 3][rowIdx - 3]) === 4) {
+                return true;
+            }
+        }
+    }
+    return false
 }
 
-// function diagDown() {
-//     for(let colIdx = 0; colIdx < 5; colIdx++) {
-//         for(let rowIdx = 5; rowIdx > 2; rowIdx--) {
-//             if (Math.abs(board[colIdx][rowIdx] + board[colIdx + 1][rowIdx - 1] + board[colIdx + 2][rowIdx - 2] + board[colIdx + 3][rowIdx - 3]) === 4){
-//                 return true;
-//             }
-//         }
-//     }
-//     return false
-// }
-
-// if board[0][5] + board[1][4] + board[2]
+// if board[0][0] + board[1][1] + board[2][2] + board[3][3] + board[4][4] + board[5][5]
 
 
 
@@ -185,124 +184,3 @@ function render() {
         document.getElementById(`c${colIdx}`).style.visibility = colArr.includes(null) ? 'visible' : 'hidden';
     });
 }
-
-// board = [
-//     [null, null, null, null, null, null],
-//     [null, null, null, null, null, null],
-//     [null, null, null, null, null, null],
-//     [null, null, null, null, null, null],
-//     [null, null, null, null, null, null],
-//     [null, null, null, null, null, null],
-//     [null, null, null, null, null, null]
-// ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // /*----- constants -----*/
-// const MAX_GUESSES = 42;
-// console.log(MAX_GUESSES)
-
-// const PLAYERS = {
-//     '-1': 'blue',
-//     '1': 'red',
-//     'null': 'white'
-// };
-
-// const BOARD_WIDTH = 7;
-
-// // /*----- app's state (variables) -----*/
-// let board; 
-// let turn; 
-// let winner; 
-
-// console.log(board, turn, winner)
-
-// // /*----- cached element references -----*/
-// let gameBoardEl = document.querySelector('.board')
-
-
-// // /*----- event listeners -----*/
-// document.querySelector('.board').addEventListener('click', handleClick)
-
-
-// // /*----- functions -----*/
-
-// function init() {
-//     board = new Array(42).fill(null)
-//     render();
-// }
-
-// function render() {
-    
-// }
-
-// function handleClick(evt) {
-// // let index= (means we're clicking on id that's in HTML) we made a variable for  
-// // the target (this grabs the gamesquars too) of all the things in the gameboard,
-// // we only want the id (of the sqaures)
-//     let index = parseInt(evt.target.id);
-//     dropCoin(index); 
-// }
-
-// function dropCoin(idx) {
-//     let playerChoice = idx;
-// // in this while loop we are grabbing the index the player chose (by clicking on it)
-// // and we're saying that while the player choice is board.length (right now it's 42)
-// // player choice will = that index + 7 until it can't go past the board
-//     while (playerChoice + BOARD_WIDTH < board.length) {
-//         playerChoice = playerChoice + BOARD_WIDTH 
-// console.log(playerChoice)
-//     } 
-// // next we need to change the value of that index to -1 or 1 after it's been selected
-// console.log(playerChoice)
-// }
-
-// init();
