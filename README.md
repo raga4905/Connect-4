@@ -1,7 +1,35 @@
 # CONNECT FOUR
 
+https://raga4905.github.io/Connect-4/ 
+
+# BACKGROUND 
+
+
+
+____
+
+
+____
+
+# DESCRIPTION
+
+A two player game to connect four chips of the same color in a row. 
+
+____
+
+# IMAGES 
+
+<a href="https://imgur.com/Q4B0Eyq"><img src="https://i.imgur.com/Q4B0Eyq.png" title="source: imgur.com" height= 150px width= 150px/></a>
+
+<a href="https://imgur.com/aiLyhMb"><img src="https://i.imgur.com/aiLyhMb.png" title="source: imgur.com" height= 150px width= 150px/></a>
+
+<a href="https://imgur.com/n0n07ZT"><img src="https://i.imgur.com/n0n07ZT.png" title="source: imgur.com" height= 150px width= 150px/></a>
+
+<a href="https://imgur.com/pZY1RoB"><img src="https://i.imgur.com/pZY1RoB.png" title="source: imgur.com" height= 150px width= 150px/></a>
+
+<a href="https://imgur.com/aCy4rCg"><img src="https://i.imgur.com/aCy4rCg.png" title="source: imgur.com" height= 150px width= 150px/></a>
+
 Render a 6x7 table
-https://imgur.com/2Pee7hq 
 
 Const variables
     Set player colors key to -1, 1, null
