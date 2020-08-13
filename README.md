@@ -9,15 +9,15 @@ ____
 
 # IMAGES 
 
-<a href="https://imgur.com/Q4B0Eyq"><img src="https://i.imgur.com/Q4B0Eyq.png" title="source: imgur.com" height= 300px width= 300px/></a>
+<a href="https://imgur.com/Q4B0Eyq"><img src="https://i.imgur.com/Q4B0Eyq.png" title="source: imgur.com" height= 450px width= 450px/></a>
 
-<a href="https://imgur.com/aiLyhMb"><img src="https://i.imgur.com/aiLyhMb.png" title="source: imgur.com" height= 300px width= 300px/></a>
+<a href="https://imgur.com/aiLyhMb"><img src="https://i.imgur.com/aiLyhMb.png" title="source: imgur.com" height= 450px width= 450px/></a>
 
-<a href="https://imgur.com/n0n07ZT"><img src="https://i.imgur.com/n0n07ZT.png" title="source: imgur.com" height= 300px width= 300px/></a>
+<a href="https://imgur.com/n0n07ZT"><img src="https://i.imgur.com/n0n07ZT.png" title="source: imgur.com" height= 450px width= 450px/></a>
 
-<a href="https://imgur.com/pZY1RoB"><img src="https://i.imgur.com/pZY1RoB.png" title="source: imgur.com" height= 300px width= 300px/></a>
+<a href="https://imgur.com/pZY1RoB"><img src="https://i.imgur.com/pZY1RoB.png" title="source: imgur.com" height= 450px width= 450px/></a>
 
-<a href="https://imgur.com/aCy4rCg"><img src="https://i.imgur.com/aCy4rCg.png" title="source: imgur.com" height= 300px width= 300px/></a>
+<a href="https://imgur.com/aCy4rCg"><img src="https://i.imgur.com/aCy4rCg.png" title="source: imgur.com" height= 450px width= 450px/></a>
 
 ____
 
