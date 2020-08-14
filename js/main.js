@@ -1,5 +1,4 @@
 /*----- constants -----*/
-const MAX_GUESSES = 42;
 
 const PLAYER_COLORS = {
     '-1': 'yellow',
